@@ -1,4 +1,4 @@
-#!c:\users\админ\desktop\optovka.kz\back\venv\scripts\python.exe
+#!c:\users\админ\desktop\optovka.kz\optovka.kz-startup\back\venv\scripts\python.exe
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
