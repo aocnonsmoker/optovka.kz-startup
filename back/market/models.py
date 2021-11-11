@@ -28,7 +28,7 @@ class Product(models.Model):
     # measurement = models.
     created_date = models.DateTimeField(default=timezone.now)
     updated_date = models.DateTimeField(default=timezone.now)
-    price: models.FloatField()
+    price = models.FloatField(default=0)
     # image = models.ImageField()
     slug = models.SlugField(max_length=50)
     min_order = models.IntegerField(default=1)
@@ -37,3 +37,13 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+
+
+class Order(models.Model):
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    qty = models.IntegerField()
+
+    class Meta:
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
