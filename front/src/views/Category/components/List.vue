@@ -45,7 +45,7 @@
         </ul>
         <div>
             <p v-for="ord in orders" :key="ord.id">
-                Brand: {{ord.brand}} Product: {{ord.product}} Quantity: {{ord.qty}}
+                Brand: {{ord.brand.name}} Product: {{ord.product.name}} Quantity: {{ord.qty}}
             </p>
         </div>
     </div>

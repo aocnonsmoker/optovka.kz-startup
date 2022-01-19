@@ -21,6 +21,9 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
+    brand = BrandSerializer(read_only=True)
+    product = ProductSerializer(read_only=True)
     class Meta:
         model = Order
-        fields = ('id', 'brand', 'product', 'qty')
+        fields = ('id', 'brand', 'product', 'qty', 'author', 'created_date', 'updated_date')
+
