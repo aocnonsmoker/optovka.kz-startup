@@ -17,7 +17,7 @@ class BrandSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('id', 'name', 'slug', 'description', 'created_date', 'updated_date', 'price', 'min_order', 'brand')
+        fields = ('id', 'name', 'slug', 'description', 'created_date', 'updated_date', 'price', 'min_order', 'brand', 'image')
 
 
 class OrderSerializer(serializers.ModelSerializer):

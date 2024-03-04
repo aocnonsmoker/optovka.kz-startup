@@ -40,7 +40,7 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    # brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     qty = models.IntegerField()
     author = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)

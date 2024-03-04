@@ -68,9 +68,7 @@ export default {
     }
   },
   created() {
-    // if (this.$cookies.isKey('opt-token')) {
-    //   this.$router.push('/')
-    // }
+    console.log(this.$store.state.authonticated)
   },
   methods: {
     submit () {
@@ -84,6 +82,7 @@ export default {
       .then(resp => resp.json())
       .then(res => {
         if (res.token) {
+          this.$store.commit('setAuth', true)
           this.$cookies.set('opt-token', res.token, '30d')
           this.$cookies.set('opt-id', res.id, '30d')
           this.$router.push('/')

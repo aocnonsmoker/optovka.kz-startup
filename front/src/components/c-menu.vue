@@ -67,6 +67,7 @@ export default {
   },
   methods: {
     logout () {
+      this.$store.commit('setAuth', false)
       this.$cookies.remove('opt-token')
       this.$router.go()
     }

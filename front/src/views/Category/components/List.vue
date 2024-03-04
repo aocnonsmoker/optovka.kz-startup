@@ -18,7 +18,7 @@
                                 )"
                                 :key="product.slug"
                             >
-                                <span
+                                <img :src="product.image" height="150" width="150"><span
                                     style="cursor: pointer"
                                     @click="createOrder(product)"
                                     >{{ product.name }}</span
@@ -45,7 +45,7 @@
         </ul>
         <div>
             <p v-for="ord in orders" :key="ord.id">
-                Brand: {{ord.brand.name}} Product: {{ord.product.name}} Quantity: {{ord.qty}}
+                Product: {{ord.product.name}} Quantity: {{ord.qty}}
             </p>
         </div>
     </div>

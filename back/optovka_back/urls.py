@@ -3,10 +3,12 @@ from django.urls import path
 from django.conf.urls import include
 from rest_framework.authtoken.views import obtain_auth_token
 from user.views import CustomObtainAuthToken
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('market/', include('market.urls')),
     path('user/', include('user.urls')),
-    path('auth/', CustomObtainAuthToken.as_view())
-]
+    path('auth/', CustomObtainAuthToken.as_view()),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
