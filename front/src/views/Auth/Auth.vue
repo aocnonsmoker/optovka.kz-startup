@@ -1,30 +1,48 @@
 <template>
     <div class="auth">
-        <h1>Authorization page</h1>
-        <form>
-            <v-text-field
-                v-model="name"
-                :error-messages="nameErrors"
-                :counter="20"
-                label="Username"
-                required
-                @input="$v.name.$touch()"
-                @blur="$v.name.$touch()"
-            ></v-text-field>
-            <v-text-field
-                v-model="password"
-                :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required, rules.min]"
-                :type="show ? 'text' : 'password'"
-                name="input-10-1"
-                label="Normal with hint text"
-                hint="At least 8 characters"
-                counter
-                @click:append="show = !show"
-            ></v-text-field>
-            <v-btn class="mr-4" @click="submit"> submit </v-btn>
-            <v-btn @click="clear"> clear </v-btn>
-        </form>
+        <div class="login" v-if="restore"> 
+          <h1 class="text-center">Optovka.kz</h1>
+          <form>
+              <v-text-field
+                  v-model="name"
+                  :error-messages="nameErrors"
+                  :counter="20"
+                  label="Логин"
+                  required
+                  @input="$v.name.$touch()"
+                  @blur="$v.name.$touch()"
+              ></v-text-field>
+              <v-text-field
+                  v-model="password"
+                  :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="[rules.required, rules.min]"
+                  :type="show ? 'text' : 'password'"
+                  name="input-10-1"
+                  label="Пароль"
+                  hint="At least 8 characters"
+                  counter
+                  @click:append="show = !show"
+              ></v-text-field>
+              <v-btn class="mr-4" @click="submit"> Войти </v-btn>
+              <v-btn @click="restorePass"> Восстановить пароль </v-btn>
+          </form>
+        </div>
+        <div class="restore" v-else>
+          <h1 class="text-center">Optovka.kz</h1>
+          <h3 class="text-center">Восстановить пароль</h3>
+          <form>
+              <v-text-field
+                  v-model="name"
+                  :error-messages="nameErrors"
+                  :counter="20"
+                  label="Логин"
+                  required
+                  @input="$v.name.$touch()"
+                  @blur="$v.name.$touch()"
+              ></v-text-field>
+              <v-btn class="mr-4" @click="restorePass"> Восстановить пароль </v-btn>
+          </form>
+        </div>
     </div>
 </template>
 
@@ -48,7 +66,8 @@ export default {
         required: value => !!value || 'Required.',
         min: v => v.length >= 4 || 'Min 4 characters',
         emailMatch: () => ('The email and password you entered don\'t match')
-      }
+      },
+      restore: false
     }
   },
   computed: {
@@ -68,7 +87,6 @@ export default {
     }
   },
   created() {
-    console.log(this.$store.state.authonticated)
   },
   methods: {
     submit () {
@@ -89,13 +107,15 @@ export default {
         }
 		  })
       .catch(error => console.log('error', error))
-      // console.log(this.name, this.password)
-      // this.$v.$touch()
     },
     clear () {
       this.$v.$reset()
       this.name = ''
       this.password = ''
+    },
+    restorePass() {
+      console.log('here')
+      this.restore = !this.restore
     }
   }
 }

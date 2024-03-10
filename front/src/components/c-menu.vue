@@ -1,5 +1,4 @@
 <template>
-
     <v-navigation-drawer color="light-blue darken-4" app>
       <v-sheet color="grey lighten-4" class="pa-4">
         <div>Название компаний</div>
@@ -19,7 +18,6 @@
 
                 {{ item.text }}
               </router-link>
-              <!-- <v-list-item-title v-text="item.text"> </v-list-item-title> -->
             </v-list-item-content>
           </v-list-item>
         </v-list-item-group>
