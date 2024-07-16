@@ -39,41 +39,6 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Категории',
             },
         ),
-        migrations.CreateModel(
-            name='Product',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('description', models.TextField(max_length=200)),
-                ('created_date', models.DateTimeField(auto_now_add=True)),
-                ('updated_date', models.DateTimeField(auto_now=True)),
-                ('price', models.FloatField(default=0)),
-                ('image', models.ImageField(blank=True, upload_to='products')),
-                ('slug', models.SlugField()),
-                ('min_order', models.IntegerField(default=1)),
-                ('brand', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='orders', to='market.brand')),
-            ],
-            options={
-                'verbose_name': 'Продукт',
-                'verbose_name_plural': 'Продукты',
-            },
-        ),
-        migrations.CreateModel(
-            name='Order',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('qty', models.IntegerField()),
-                ('created_date', models.DateTimeField(auto_now_add=True)),
-                ('updated_date', models.DateTimeField(auto_now=True)),
-                ('author', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('brand', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='market.brand')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='market.product')),
-            ],
-            options={
-                'verbose_name': 'Заказ',
-                'verbose_name_plural': 'Заказы',
-            },
-        ),
         migrations.AddField(
             model_name='brand',
             name='category',

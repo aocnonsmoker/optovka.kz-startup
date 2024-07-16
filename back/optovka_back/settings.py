@@ -62,7 +62,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8080',
+    'http://localhost:8080', 'http://localhost:8081'
 ]
 
 ROOT_URLCONF = 'optovka_back.urls'

@@ -17,13 +17,12 @@ class BrandSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('id', 'name', 'slug', 'description', 'created_date', 'updated_date', 'price', 'min_order', 'brand', 'image')
+        fields = ('id', 'name', 'slug', 'description', 'created_date', 'updated_date', 'price', 'min_order', 'brand', 'image', 'category')
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    brand = BrandSerializer(read_only=True)
-    product = ProductSerializer(read_only=True)
     class Meta:
         model = Order
-        fields = ('id', 'brand', 'product', 'qty', 'author', 'created_date', 'updated_date')
+        fields = ('id', 'brand', 'product', 'count', 'arrive_date', 'market_id', 'status', 'created_date', 'updated_date')
+
 

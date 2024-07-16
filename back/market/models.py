@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 
 class Category(models.Model):
@@ -32,7 +33,9 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products', blank=True)
     slug = models.SlugField(max_length=50)
     min_order = models.IntegerField(default=1)
-    brand = models.ForeignKey(Brand, related_name='orders', on_delete=models.CASCADE)
+    brand = models.IntegerField(default=None)
+    category = models.IntegerField(default=None)
+
 
     class Meta:
         verbose_name = 'Продукт'
@@ -40,12 +43,14 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    # brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    qty = models.IntegerField()
-    author = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    brand = models.IntegerField(default=None)
+    product = models.IntegerField(default=None)
+    count = models.IntegerField(default=1)
+    arrive_date = models.DateTimeField(default=datetime.now, blank=True)
+    market_id = models.IntegerField(default=None)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
+    status = models.IntegerField(default=1)
 
     class Meta:
         verbose_name = 'Заказ'
