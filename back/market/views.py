@@ -96,6 +96,23 @@ class OrderViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     parser_classes = (MultiPartParser, FormParser)
 
-    # def list(self, request):
-    #     print(request)
+    def list(self, request):
+        result = []
+        orders = Order.objects.filter(brand=1).values()
+        for order in orders:
+            product = Product.objects.filter(id=order['product']).values()
+            res = {
+                'id': order['id'],
+                'product': product[0]['name'],
+                'image': product[0]['image'],
+                'count': order['count'],
+                'market': 'маг. Тест',
+                'market_address': 'Тест 55',
+                'market_contact': '+77786768246',
+                'created_date': order['created_date'],
+                'updated_date': order['updated_date'],
+                'status': order['status']
+            }
+            result.append(res)
+        return Response(result)
 
